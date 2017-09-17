@@ -4,6 +4,8 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
@@ -12,6 +14,7 @@ import java.beans.PropertyVetoException;
  * Created by ZhangHao on 2017/9/17.
  */
 @Configuration
+@EnableTransactionManagement
 public class Config {
     @Bean
     public DataSource dataSource() {
@@ -32,12 +35,12 @@ public class Config {
         return new JdbcTemplate(dataSource);
     }
 
-//    @Bean
-//    public DataSourceTransactionManager dataSourceTransactionManager(DataSource dataSource) {
-//        DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager();
-//        dataSourceTransactionManager.setDataSource(dataSource);
-//        return dataSourceTransactionManager;
-//    }
+    @Bean
+    public DataSourceTransactionManager dataSourceTransactionManager(DataSource dataSource) {
+        DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager();
+        dataSourceTransactionManager.setDataSource(dataSource);
+        return dataSourceTransactionManager;
+    }
 
     @Bean
     public AccountService accountService() {
