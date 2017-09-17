@@ -1,4 +1,4 @@
-package tk.zhangh.spring.tx.test.aspecj;
+package tk.zhangh.spring.tx.test.bean;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.springframework.context.annotation.Bean;
@@ -8,22 +8,28 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 /**
  * Created by ZhangHao on 2017/9/17.
  */
 @Configuration
-public class Config {
+public class BaseConfig {
     @Bean
     public DataSource dataSource() {
         try {
+            Properties properties = new Properties();
+            InputStream inputStream = this.getClass().getResourceAsStream("/application.properties");
+            properties.load(inputStream);
             ComboPooledDataSource dataSource = new ComboPooledDataSource();
-            dataSource.setDriverClass("com.mysql.jdbc.Driver");
-            dataSource.setUser("root");
-            dataSource.setPassword("1");
-            dataSource.setJdbcUrl("jdbc:mysql://zh-home.tk:3306/test");
+            dataSource.setDriverClass(properties.getProperty("jdbc.driverClass"));
+            dataSource.setJdbcUrl(properties.getProperty("jdbc.url"));
+            dataSource.setUser(properties.getProperty("jdbc.username"));
+            dataSource.setPassword(properties.getProperty("jdbc.password"));
             return dataSource;
-        } catch (PropertyVetoException e) {
+        } catch (PropertyVetoException | IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -41,12 +47,12 @@ public class Config {
     }
 
     @Bean
-    public AccountDao accountDao() {
-        return new AccountDao.AccountDaoImpl();
+    public AccountService accountService() {
+        return new AccountService.AccountServiceImpl();
     }
 
     @Bean
-    public AccountService accountService() {
-        return new AccountService.AccountServiceImpl();
+    public AccountDao accountDao() {
+        return new AccountDao.AccountDaoImpl();
     }
 }

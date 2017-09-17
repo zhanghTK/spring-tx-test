@@ -1,4 +1,4 @@
-package tk.zhangh.spring.tx.test.factory;
+package tk.zhangh.spring.tx.test.bean;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -12,7 +12,6 @@ public interface AccountDao {
 
     void turnIn(String name, Double amount);
 
-    @Component
     class AccountDaoImpl implements AccountDao {
 
         @Autowired

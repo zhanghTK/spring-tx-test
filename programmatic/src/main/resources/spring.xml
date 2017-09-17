@@ -22,10 +22,10 @@
 
     <bean id="transactionTemplateUtils" class="tk.zhangh.spring.tx.test.TransactionTemplateUtils"/>
 
-    <bean id="accountService" class="tk.zhangh.spring.tx.test.AccountServiceImpl">
+    <bean id="accountService" class="tk.zhangh.spring.tx.test.AccountService.AccountServiceImpl">
         <property name="accountDao" ref="accountDao"/>
     </bean>
-    <bean id="accountDao" class="tk.zhangh.spring.tx.test.AccountDaoImpl">
+    <bean id="accountDao" class="tk.zhangh.spring.tx.test.AccountDao.AccountDaoImpl">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 </beans>

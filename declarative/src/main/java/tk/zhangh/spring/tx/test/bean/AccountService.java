@@ -1,4 +1,4 @@
-package tk.zhangh.spring.tx.test.aspecj;
+package tk.zhangh.spring.tx.test.bean;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 public interface AccountService {
     void transfer(String from, String to, Double amount);
 
-    @Component
     class AccountServiceImpl implements AccountService {
 
         @Autowired

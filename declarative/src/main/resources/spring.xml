@@ -10,7 +10,7 @@
     </tx:advice>
 
     <aop:config>
-        <aop:pointcut id="pointcut1" expression="execution(* tk.zhangh.spring.tx.test.aspecj.AccountService+.*(..))"/>
+        <aop:pointcut id="pointcut1" expression="execution(* tk.zhangh.spring.tx.test.bean.AccountService+.*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut1"/>
     </aop:config>
 </beans>
