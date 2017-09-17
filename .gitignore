@@ -2,4 +2,8 @@
 .gitignore
 .idea/
 programmatic/target/
-*iml
+declarative/.mvn
+programmatic/programmatic.iml
+programmatic/src/test/
+declarative/mvnw
+declarative/mvnw.cmd
